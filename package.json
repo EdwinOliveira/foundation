@@ -1,0 +1,19 @@
+{
+	"name": "@oliveira/foundation",
+	"version": "0.0.1",
+	"private": true,
+	"license": "ISC",
+	"scripts": {
+		"biome:format": "pnpm biome format --write packages",
+		"biome:lint": "pnpm biome lint --write packages",
+		"biome:check": "pnpm biome check --write packages"
+	},
+	"author": {
+		"name": "Diogo Rafael Lourenço Oliveira",
+		"email": "diogorafaellourencooliveira97@gmail.com"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"typescript": "^5.7.3"
+	}
+}
