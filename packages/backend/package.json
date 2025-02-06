@@ -5,8 +5,7 @@
 		"dev": "tsx --watch src/BackendApplication.ts"
 	},
 	"dependencies": {
-		"express": "^4.21.2",
-		"socket.io": "^4.8.1"
+		"express": "^4.21.2"
 	},
 	"devDependencies": {
 		"@types/cors": "^2.8.17",
