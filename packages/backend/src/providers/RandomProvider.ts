@@ -9,7 +9,7 @@ const RandomProvider = () => {
 			const randomCharacters: Record<string, string> = {};
 
 			for (let i = 0; i < size; i++) {
-				const position = String(i.toString().padStart(2, "0"));
+				const position = i.toString().padStart(2, "0");
 				randomCharacters[position] = randomCharacter();
 			}
 
