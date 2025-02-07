@@ -1,9 +1,8 @@
 import type { Request, Response } from "express";
 import { RandomProvider } from "../providers/RandomProvider";
-import { interval, map, tap } from "rxjs";
 
 const CreateStreamUseCase = () => {
-	const randomProvider = RandomProvider();
+	const { createCharacters, createCode } = RandomProvider();
 
 	const createStream = (request: Request, response: Response) => {
 		response.status(200).set({
@@ -12,17 +11,14 @@ const CreateStreamUseCase = () => {
 			connection: "keep-alive",
 		});
 
-		const charactersStream = interval(1000)
-			.pipe(
-				map(() => randomProvider.createCharacters(100)),
-				map((characters) => JSON.stringify(characters)),
-				tap((characters) => response.write(`data: ${characters}!\n\n`)),
-			)
-			.subscribe();
+		setInterval(() => {
+			const characters = createCharacters(100);
+			const code = createCode(characters);
+			response.write(`data: ${JSON.stringify({ characters, code })}!\n\n`);
+		}, 1000);
 
 		request.on("close", () => {
 			response.end();
-			charactersStream.unsubscribe();
 		});
 	};
 
