@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 import { RandomProvider } from "../providers/RandomProvider";
-import { interval, map } from "rxjs";
+import { interval, map, tap } from "rxjs";
 
 const CreateStreamUseCase = () => {
 	const randomProvider = RandomProvider();
@@ -14,13 +14,9 @@ const CreateStreamUseCase = () => {
 
 		const charactersStream = interval(1000)
 			.pipe(
-				map(() => {
-					const stringfiedCharacters = JSON.stringify(
-						randomProvider.createCharacters(100),
-					);
-
-					response.write(`data: ${stringfiedCharacters}!\n\n`);
-				}),
+				map(() => randomProvider.createCharacters(100)),
+				map((characters) => JSON.stringify(characters)),
+				tap((characters) => response.write(`data: ${characters}!\n\n`)),
 			)
 			.subscribe();
 
