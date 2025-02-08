@@ -1,16 +1,49 @@
 const RandomProvider = () => {
 	return {
-		createCharacters: (size: number) => {
-			const randomCharacter = () => {
+		createCharacters: (size: number, priorityCharacter?: string) => {
+			const randomCharacter = (priorityCharacter?: string) => {
 				const characters = "abcdefghijklmnopqrstuvyxz";
-				return characters.charAt(Math.floor(Math.random() * characters.length));
+
+				const sanitizedCharacters = priorityCharacter
+					? characters.replace(priorityCharacter, "")
+					: characters;
+
+				return sanitizedCharacters.charAt(
+					randomNumber(sanitizedCharacters.length),
+				);
+			};
+
+			const randomNumber = (lenth: number) => {
+				return Math.floor(Math.random() * lenth);
 			};
 
 			const randomCharacters: Record<string, string> = {};
 
+			if (priorityCharacter === undefined) {
+				for (let i = 0; i < size; i++) {
+					const position = i.toString().padStart(2, "0");
+					randomCharacters[position] = randomCharacter();
+				}
+
+				return randomCharacters;
+			}
+
+			let priorityCharacterOccurrences = 0;
+
 			for (let i = 0; i < size; i++) {
-				const position = i.toString().padStart(2, "0");
-				randomCharacters[position] = randomCharacter();
+				let position = randomNumber(100).toString().padStart(2, "0");
+
+				while (randomCharacters[position]) {
+					position = randomNumber(100).toString().padStart(2, "0");
+				}
+
+				if (priorityCharacterOccurrences >= 0.2 * size) {
+					randomCharacters[position] = randomCharacter(priorityCharacter);
+					continue;
+				}
+
+				randomCharacters[position] = priorityCharacter;
+				priorityCharacterOccurrences += 1;
 			}
 
 			return randomCharacters;
