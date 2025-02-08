@@ -2,10 +2,12 @@
 	"name": "@oliveira/foundation-backend",
 	"main": "BackendApplication.js",
 	"scripts": {
-		"dev": "tsx --watch src/BackendApplication.ts"
+		"dev": "tsx --watch src/BackendApplication.ts",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"express": "^4.21.2",
+		"vitest": "^3.0.5",
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {
