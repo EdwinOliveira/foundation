@@ -16,8 +16,9 @@
 
 .paragraph {
   color: currentColor;
+  letter-spacing: 0.05rem;
 
   &-bold {
-    font-weight: 700;
+    font-weight: 600;
   }
 }
