@@ -1,0 +1,23 @@
+.button {
+  font-weight: 700;
+  color: whitesmoke;
+}
+
+.input {
+  font-weight: 700;
+  color: whitesmoke;
+}
+
+.label {
+  color: lightseagreen;
+  font-size: clamp(0.5rem, 0.5rem + 0.25rem, 1rem);
+  letter-spacing: 0.10rem;
+}
+
+.paragraph {
+  color: currentColor;
+
+  &-bold {
+    font-weight: 700;
+  }
+}
