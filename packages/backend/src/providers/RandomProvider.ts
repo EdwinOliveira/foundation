@@ -16,37 +16,45 @@ const RandomProvider = () => {
 			return randomCharacters;
 		},
 		createCode: (characters: Record<string, string>) => {
-			const currentSeconds = new Date().getSeconds().toString();
+			const currentSeconds = new Date()
+				.getSeconds()
+				.toString()
+				.padStart(2, "0");
 			const reversedSeconds = currentSeconds.split("").reverse().join("");
 
 			const charactersOccurrences: Record<string, number> = {};
 
 			for (const character of Object.values(characters)) {
 				if (
-					character === characters[currentSeconds] ||
-					character === characters[reversedSeconds]
+					character !== characters[currentSeconds] &&
+					character !== characters[reversedSeconds]
 				) {
-					const characterOccurrences = charactersOccurrences[character];
+					continue;
+				}
 
-					if (characterOccurrences) {
-						const newOccurrenceSum = characterOccurrences + 1;
+				const characterOccurrences = charactersOccurrences[character];
 
-						if (newOccurrenceSum > 9) {
-							for (let i = 1; i <= Object.entries(characters).length; i++) {
-								if (newOccurrenceSum % i === 0 && newOccurrenceSum / i <= 9) {
-									charactersOccurrences[character] = newOccurrenceSum / i;
-								}
-							}
-						} else {
-							charactersOccurrences[character] = newOccurrenceSum;
-						}
-					} else {
-						charactersOccurrences[character] = 1;
+				if (characterOccurrences === undefined) {
+					charactersOccurrences[character] = 1;
+					continue;
+				}
+
+				const newOccurrenceSum = characterOccurrences + 1;
+
+				if (newOccurrenceSum <= 9) {
+					charactersOccurrences[character] = newOccurrenceSum;
+					continue;
+				}
+
+				for (let i = 1; i <= Object.entries(characters).length; i++) {
+					if (newOccurrenceSum % i === 0 && newOccurrenceSum / i <= 9) {
+						charactersOccurrences[character] = newOccurrenceSum / i;
 					}
 				}
 			}
 
-			return Object.values(charactersOccurrences).join("");
+			const code = Object.values(charactersOccurrences).join("");
+			return code.padStart(2, code);
 		},
 	};
 };

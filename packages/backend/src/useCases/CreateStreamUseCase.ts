@@ -15,7 +15,7 @@ const CreateStreamUseCase = () => {
 			const characters = createCharacters(100);
 			const code = createCode(characters);
 			response.write(`data: ${JSON.stringify({ characters, code })}!\n\n`);
-		}, 1000);
+		}, 2000);
 
 		request.on("close", () => {
 			response.end();
