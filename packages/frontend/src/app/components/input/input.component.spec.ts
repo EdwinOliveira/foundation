@@ -1,10 +1,10 @@
 import { type ComponentFixture, TestBed } from "@angular/core/testing";
-
 import { InputComponent } from "./input.component";
 
 describe("InputComponent", () => {
 	let component: InputComponent;
 	let fixture: ComponentFixture<InputComponent>;
+	let inputElement: HTMLElement;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -13,10 +13,14 @@ describe("InputComponent", () => {
 
 		fixture = TestBed.createComponent(InputComponent);
 		component = fixture.componentInstance;
-		fixture.detectChanges();
+		inputElement =
+			fixture.debugElement.nativeElement.querySelector("#typography");
 	});
 
-	it("should create", () => {
-		expect(component).toBeTruthy();
+	it("@outputs predefined placeholder", () => {
+		component.placeholder = "Hello Dummy";
+		fixture.detectChanges();
+
+		expect(inputElement.ariaPlaceholder).toBe("Hello Dummy");
 	});
 });

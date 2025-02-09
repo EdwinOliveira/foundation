@@ -4,7 +4,7 @@ import { TypographyComponent } from "./typography.component";
 describe("TypographyComponent", () => {
 	let component: TypographyComponent;
 	let fixture: ComponentFixture<TypographyComponent>;
-	let typographyInput: HTMLElement;
+	let typographyElement: HTMLElement;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -13,7 +13,7 @@ describe("TypographyComponent", () => {
 
 		fixture = TestBed.createComponent(TypographyComponent);
 		component = fixture.componentInstance;
-		typographyInput =
+		typographyElement =
 			fixture.debugElement.nativeElement.querySelector("#typography");
 	});
 
@@ -21,13 +21,13 @@ describe("TypographyComponent", () => {
 		component.content = "Hello Dummy";
 		fixture.detectChanges();
 
-		expect(typographyInput.innerText).toBe("Hello Dummy");
+		expect(typographyElement.innerText).toBe("Hello Dummy");
 	});
 
 	it("@contains predefined classes", () => {
 		component.segment = "label";
 		fixture.detectChanges();
 
-		expect(typographyInput.classList).toContain("label");
+		expect(typographyElement.classList).toContain("label");
 	});
 });
