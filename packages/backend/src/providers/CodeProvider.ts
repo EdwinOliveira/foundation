@@ -35,7 +35,7 @@ const CodeProvider = () => {
 		}
 
 		const code = Object.values(charactersOccurrences).join("");
-		return code.padStart(2, code);
+		return code.padEnd(2, code);
 	};
 
 	return { createCode };

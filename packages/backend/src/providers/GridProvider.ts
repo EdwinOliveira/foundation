@@ -1,9 +1,11 @@
 import { RandomProvider } from "./RandomProvider";
 
 const GridProvider = () => {
+	let priorityCharacter: string | undefined;
+
 	const { randomCharacter, randomNumber } = RandomProvider();
 
-	const createGrid = (size: number, priorityCharacter?: string) => {
+	const createGrid = (size: number) => {
 		const randomCharacters: Record<string, string> = {};
 
 		if (priorityCharacter === undefined) {
@@ -36,7 +38,12 @@ const GridProvider = () => {
 		return randomCharacters;
 	};
 
-	return { createGrid };
+	return {
+		setPriorityCharacter: (newCharacter: string) => {
+			priorityCharacter = newCharacter;
+		},
+		createGrid,
+	};
 };
 
 export { GridProvider };

@@ -20,11 +20,14 @@ export class StreamService {
 		});
 	}
 
-	updateStreamWeightCharacter(character: string) {
+	updateStreamPriorityCharacter(character: string) {
 		return new Observable<Stream>(() => {
-			fetch(`${this.#rootURL}/weight`, {
-				method: "POST",
-				body: JSON.stringify({ character }),
+			fetch(`${this.#rootURL}/stream/characters`, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ priorityCharacter: character }),
 			});
 		});
 	}

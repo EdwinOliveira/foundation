@@ -1,34 +1,25 @@
 import type { Request, Response } from "express";
-import { RandomProvider } from "../providers/RandomProvider";
-import { createStreamSchema } from "../schemas/CreateStreamSchema";
-import { GridProvider } from "../providers/GridProvider";
-import { CodeProvider } from "../providers/CodeProvider";
+import type { BackendContext } from "../BackendApplication";
 
-const CreateStreamUseCase = () => {
-	const { createCode } = CodeProvider();
-	const { createGrid } = GridProvider();
-
+const CreateStreamUseCase = ({
+	codeProvider,
+	gridProvider,
+}: BackendContext) => {
 	const createStream = (request: Request, response: Response) => {
-		const { data: schemaArgs, error: schemaError } =
-			createStreamSchema.safeParse(request.query);
-
-		if (schemaError) {
-			return response.status(400).json(schemaError);
-		}
-
 		response.status(200).set({
 			"content-type": "text/event-stream",
 			"cache-control": "no-cache",
 			connection: "keep-alive",
 		});
 
-		setInterval(() => {
-			const characters = createGrid(100, schemaArgs.priorityCharacter);
-			const code = createCode(characters);
-			response.write(`data: ${JSON.stringify({ characters, code })}!\n\n`);
+		const interval = setInterval(() => {
+			const characters = gridProvider.createGrid(100);
+			const code = codeProvider.createCode(characters);
+			response.write(`data: ${JSON.stringify({ characters, code })}\n\n`);
 		}, 2000);
 
 		request.on("close", () => {
+			clearInterval(interval);
 			response.end();
 		});
 	};

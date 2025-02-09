@@ -7,7 +7,15 @@ import { ButtonComponent } from "./components/button/button.component";
 import { CommonModule } from "@angular/common";
 // biome-ignore lint/style/useImportType: <explanation>
 import { StreamService } from "./services/stream.service";
-import { BehaviorSubject, Subject, Subscription } from "rxjs";
+import {
+	BehaviorSubject,
+	debounce,
+	debounceTime,
+	map,
+	Subject,
+	Subscription,
+	timer,
+} from "rxjs";
 
 @Component({
 	selector: "app-root",
@@ -24,6 +32,7 @@ import { BehaviorSubject, Subject, Subscription } from "rxjs";
 })
 export class AppComponent implements OnDestroy {
 	private streamSubscription = new Subscription();
+	private streamPrioritySubscription = new Subscription();
 	public characters$ = new BehaviorSubject<Array<string>>(new Array(100));
 	public code$ = new BehaviorSubject<string>("00");
 
@@ -38,7 +47,15 @@ export class AppComponent implements OnDestroy {
 			});
 	}
 
+	updateStreamPriorityCharacter(character: string) {
+		this.streamPrioritySubscription = this.streamService
+			.updateStreamPriorityCharacter(character)
+			.pipe(debounceTime(5000))
+			.subscribe();
+	}
+
 	ngOnDestroy(): void {
 		this.streamSubscription.unsubscribe();
+		this.streamPrioritySubscription.unsubscribe();
 	}
 }
