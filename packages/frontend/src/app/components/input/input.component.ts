@@ -45,7 +45,6 @@ export class InputComponent implements OnInit, OnDestroy {
 				}),
 			)
 			.subscribe(() => {
-				console.log("hello");
 				this.isDisabled = false;
 			});
 	}

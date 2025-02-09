@@ -1,12 +1,12 @@
 import { Component, type OnInit, type OnDestroy } from "@angular/core";
 import { TrackerComponent } from "./components/tracker/tracker.component";
 import { GridComponent } from "./components/grid/grid.component";
-import { TypographyComponent } from "./components/typography/typography.component";
-import { InputComponent } from "./components/input/input.component";
 import { ButtonComponent } from "./components/button/button.component";
 import { CommonModule } from "@angular/common";
 // biome-ignore lint/style/useImportType: <explanation>
 import { StreamService } from "./services/stream.service";
+// biome-ignore lint/style/useImportType: <explanation>
+import { ErrorHandlerService } from "./services/error-handler.service";
 import { BehaviorSubject, debounceTime, Subscription } from "rxjs";
 import { ClockComponent } from "./components/clock/clock.component";
 import { CharacterSelectorComponent } from "./components/character-selector/character-selector.component";
@@ -30,7 +30,10 @@ export class AppComponent implements OnDestroy {
 	public characters$ = new BehaviorSubject<Array<string>>(new Array(100));
 	public code$ = new BehaviorSubject<string>("00");
 
-	constructor(public readonly streamService: StreamService) {}
+	constructor(
+		public readonly streamService: StreamService,
+		public readonly errorHandlerService: ErrorHandlerService,
+	) {}
 
 	generateCharacters() {
 		this.streamSubscription = this.streamService
