@@ -1,14 +1,16 @@
 import { RandomProvider } from "./RandomProvider";
 
 const GridProvider = () => {
+	const { randomCharacter, randomNumber } = RandomProvider();
 	let priorityCharacter: string | undefined;
 
-	const { randomCharacter, randomNumber } = RandomProvider();
+	const createPriorityCharacter = (newCharacter: string) => {
+		priorityCharacter = newCharacter;
+	};
 
 	const createGrid = (size: number) => {
 		const randomCharacters: Record<string, string> = {};
 
-		console.log(priorityCharacter);
 		if (priorityCharacter === undefined) {
 			for (let i = 0; i < size; i++) {
 				const position = i.toString().padStart(2, "0");
@@ -21,10 +23,10 @@ const GridProvider = () => {
 		let priorityCharacterOccurrences = 0;
 
 		for (let i = 0; i < size; i++) {
-			let position = randomNumber(100).toString().padStart(2, "0");
+			let position = randomNumber(size).toString().padStart(2, "0");
 
 			while (randomCharacters[position]) {
-				position = randomNumber(100).toString().padStart(2, "0");
+				position = randomNumber(size).toString().padStart(2, "0");
 			}
 
 			if (priorityCharacterOccurrences >= 0.2 * size) {
@@ -39,12 +41,7 @@ const GridProvider = () => {
 		return randomCharacters;
 	};
 
-	return {
-		setPriorityCharacter: (newCharacter: string) => {
-			priorityCharacter = newCharacter;
-		},
-		createGrid,
-	};
+	return { createPriorityCharacter, createGrid };
 };
 
 export { GridProvider };

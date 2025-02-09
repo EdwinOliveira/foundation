@@ -34,6 +34,10 @@ const CodeProvider = () => {
 			}
 		}
 
+		if (Object.keys(charactersOccurrences).length === 0) {
+			return "00";
+		}
+
 		const code = Object.values(charactersOccurrences).join("");
 		return code.padEnd(2, code);
 	};
