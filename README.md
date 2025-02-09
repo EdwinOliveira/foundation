@@ -23,3 +23,7 @@
 * Navigate to the frontend folder and run following command.
 
 > command: pnpm run test
+
+## Screenshot
+
+![alt text](image.png)
