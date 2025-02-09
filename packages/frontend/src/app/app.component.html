@@ -4,6 +4,7 @@
       <app-typography content="CHARACTER" segment="label"></app-typography>
       <app-input placeholder="Character" (onCharacterInput)="updateStreamPriorityCharacter($event)"></app-input>
     </div>
+    <app-clock></app-clock>
     <div id="wrapper__actions--button">
       <app-button content="GENERATE 2D GRID" segment="button" (onGenerateStream)="generateCharacters()"></app-button>
     </div>

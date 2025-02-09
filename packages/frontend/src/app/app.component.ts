@@ -16,6 +16,7 @@ import {
 	Subscription,
 	timer,
 } from "rxjs";
+import { ClockComponent } from "./components/clock/clock.component";
 
 @Component({
 	selector: "app-root",
@@ -26,6 +27,7 @@ import {
 		TypographyComponent,
 		InputComponent,
 		ButtonComponent,
+		ClockComponent,
 	],
 	templateUrl: "./app.component.html",
 	styleUrl: "./app.component.scss",
