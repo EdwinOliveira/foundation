@@ -3,7 +3,7 @@
     <app-character-selector (onCharacterInput)="updateStreamPriorityCharacter($event)"></app-character-selector>
     <app-clock></app-clock>
     <div id="wrapper__actions--button">
-      <app-button content="GENERATE 2D GRID" segment="button" (onGenerateStream)="generateCharacters()"></app-button>
+      <app-button [content]="'generate 2d grid' | uppercase" segment="button" (onGenerateStream)="generateCharacters()"></app-button>
     </div>
   </div>
   <app-grid [characters]="characters$ | async"></app-grid>
