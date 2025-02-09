@@ -7,16 +7,9 @@ import { ButtonComponent } from "./components/button/button.component";
 import { CommonModule } from "@angular/common";
 // biome-ignore lint/style/useImportType: <explanation>
 import { StreamService } from "./services/stream.service";
-import {
-	BehaviorSubject,
-	debounce,
-	debounceTime,
-	map,
-	Subject,
-	Subscription,
-	timer,
-} from "rxjs";
+import { BehaviorSubject, debounceTime, Subscription } from "rxjs";
 import { ClockComponent } from "./components/clock/clock.component";
+import { CharacterSelectorComponent } from "./components/character-selector/character-selector.component";
 
 @Component({
 	selector: "app-root",
@@ -24,8 +17,7 @@ import { ClockComponent } from "./components/clock/clock.component";
 		CommonModule,
 		TrackerComponent,
 		GridComponent,
-		TypographyComponent,
-		InputComponent,
+		CharacterSelectorComponent,
 		ButtonComponent,
 		ClockComponent,
 	],

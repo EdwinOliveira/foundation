@@ -6,7 +6,7 @@ import {
 	type OnInit,
 	Output,
 } from "@angular/core";
-import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
 	concatMap,
 	delay,
@@ -14,8 +14,6 @@ import {
 	filter,
 	of,
 	Subject,
-	Subscription,
-	switchMap,
 	throttleTime,
 } from "rxjs";
 
