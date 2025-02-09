@@ -7,7 +7,17 @@ import {
 	Output,
 } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { distinctUntilChanged, Subscription, throttleTime } from "rxjs";
+import {
+	concatMap,
+	delay,
+	distinctUntilChanged,
+	filter,
+	of,
+	Subject,
+	Subscription,
+	switchMap,
+	throttleTime,
+} from "rxjs";
 
 @Component({
 	selector: "app-input",
@@ -19,19 +29,34 @@ export class InputComponent implements OnInit, OnDestroy {
 	@Input() placeholder = "";
 	@Output() onCharacterInput = new EventEmitter<string>();
 
-	character = new FormControl();
-	character$ = new Subscription();
+	isDisabled = false;
+
+	character = "";
+	characterSubject = new Subject<string>();
 
 	ngOnInit() {
-		this.character.disable;
-		this.character$ = this.character.valueChanges
-			.pipe(throttleTime(4000), distinctUntilChanged())
-			.subscribe((character) => {
-				this.onCharacterInput.emit(character);
+		this.characterSubject
+			.pipe(
+				filter((character) => !!character),
+				throttleTime(4000),
+				distinctUntilChanged(),
+				concatMap((character) => {
+					this.isDisabled = true;
+					this.onCharacterInput.emit(character);
+					return of(character).pipe(delay(4000));
+				}),
+			)
+			.subscribe(() => {
+				console.log("hello");
+				this.isDisabled = false;
 			});
 	}
 
-	ngOnDestroy(): void {
-		this.character$.unsubscribe();
+	onCharacterTyping() {
+		this.characterSubject.next(this.character);
+	}
+
+	ngOnDestroy() {
+		this.characterSubject.unsubscribe();
 	}
 }

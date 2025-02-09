@@ -1,1 +1,1 @@
-<input id="input" maxlength="1" type="text" [placeholder]="placeholder" [formControl]="character">
+<input id="input" [placeholder]="placeholder" [(ngModel)]="character" (input)="onCharacterTyping()" [disabled]="isDisabled" />

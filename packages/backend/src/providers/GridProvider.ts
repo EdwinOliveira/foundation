@@ -8,6 +8,7 @@ const GridProvider = () => {
 	const createGrid = (size: number) => {
 		const randomCharacters: Record<string, string> = {};
 
+		console.log(priorityCharacter);
 		if (priorityCharacter === undefined) {
 			for (let i = 0; i < size; i++) {
 				const position = i.toString().padStart(2, "0");
