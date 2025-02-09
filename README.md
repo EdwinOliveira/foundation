@@ -13,11 +13,13 @@
 ## Backend Tests
 
 * Both the providers and the schema are covered by tests.
+* Navigate to the backend folder and run following command.
 
 > command: pnpm run test
 
 ## Frontend Tests
 
 * All the components are covered by tests.
+* Navigate to the frontend folder and run following command.
 
 > command: pnpm run test
