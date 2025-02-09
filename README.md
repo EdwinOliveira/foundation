@@ -1,9 +1,7 @@
 ## Tech Stack
 
-* Backend: Node|Express|Vitest|Zod
-* Frontend: Angular|Jasmine|Karma
-
-Node v23.6.0
+* Backend: Node (v23.6.0) | Express | Vitest | Zod
+* Frontend: Angular | Jasmine | Karma
 
 ## Install Dependencies
 
