@@ -14,7 +14,7 @@ const UpdateStreamPriorityCharacterUseCase = (context: BackendContext) => {
 			return response.status(400).json(schemaError);
 		}
 
-		context.gridProvider.setPriorityCharacter(schemaArgs.priorityCharacter);
+		context.gridProvider.createPriorityCharacter(schemaArgs.priorityCharacter);
 
 		return response.status(201).json();
 	};
