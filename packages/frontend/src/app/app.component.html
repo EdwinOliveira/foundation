@@ -1,0 +1,13 @@
+<div id="wrapper">
+  <div id="wrapper__actions">
+    <div id="wrapper__actions--weight-selector">
+      <app-typography content="CHARACTER" segment="label"></app-typography>
+      <app-input placeholder="Character"></app-input>
+    </div>
+    <div id="wrapper__actions--button">
+      <app-button content="GENERATE 2D GRID" segment="button" (onGenerateStream)="generateCharacters()"></app-button>
+    </div>
+  </div>
+  <app-grid [characters]="characters$ | async"></app-grid>
+  <app-tracker [code]="code$ | async"></app-tracker>
+</div>

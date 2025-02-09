@@ -13,8 +13,7 @@ describe("InputComponent", () => {
 
 		fixture = TestBed.createComponent(InputComponent);
 		component = fixture.componentInstance;
-		inputElement =
-			fixture.debugElement.nativeElement.querySelector("#typography");
+		inputElement = fixture.debugElement.nativeElement.querySelector("input");
 	});
 
 	it("@outputs predefined placeholder", () => {
