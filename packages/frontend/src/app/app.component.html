@@ -1,14 +1,12 @@
 <div id="wrapper">
   @if (errorHandlerService.error$ | async; as error) {
-    <p style="color: red; text-align: center;">{{ error }}</p>
+    <p id="error" style="color: red; text-align: center;">{{ error }}</p>
   }
   <div id="wrapper__actions">
     <app-character-selector (onCharacterInput)="updateStreamPriorityCharacter($event)"></app-character-selector>
     <app-clock></app-clock>
-    <div id="wrapper__actions--button">
-      <app-button [content]="'generate 2d grid' | uppercase" segment="button" (onGenerateStream)="generateCharacters()"></app-button>
-    </div>
+    <app-button [content]="'generate 2d grid' | uppercase" segment="button" (onGenerateStream)="generateCharacters()"></app-button>
   </div>
-  <app-grid [characters]="characters$ | async"></app-grid>
-  <app-tracker [code]="code$ | async"></app-tracker>
+  <app-grid [characters]="(characters$ | async) ?? []"></app-grid>
+  <app-tracker [code]="(code$ | async) ?? ''"></app-tracker>
 </div>

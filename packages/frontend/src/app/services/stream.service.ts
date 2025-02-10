@@ -27,7 +27,7 @@ export class StreamService {
 		});
 	}
 
-	updateStreamPriorityCharacter(character: string) {
+	updateStreamPriorityCharacter$(character: string) {
 		return new Observable(() => {
 			fetch(`${this.#rootURL}/stream/characters`, {
 				method: "PUT",

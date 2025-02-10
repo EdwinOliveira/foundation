@@ -34,4 +34,20 @@ describe("ButtonComponent", () => {
 			expect(typographyComponent.segment).toEqual("button");
 		});
 	});
+
+	describe("ButtonElement", () => {
+		let buttonElement: HTMLElement;
+
+		beforeEach(() => {
+			buttonElement =
+				fixture.debugElement.nativeElement.querySelector("#button");
+			fixture.detectChanges();
+		});
+
+		it("@triggers event when button is clicked", () => {
+			spyOn(component.onGenerateStream, "emit");
+			buttonElement.click();
+			expect(component.onGenerateStream.emit).toHaveBeenCalled();
+		});
+	});
 });

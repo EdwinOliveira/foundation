@@ -46,7 +46,7 @@ export class AppComponent implements OnDestroy {
 
 	updateStreamPriorityCharacter(character: string) {
 		this.streamPrioritySubscription = this.streamService
-			.updateStreamPriorityCharacter(character)
+			.updateStreamPriorityCharacter$(character)
 			.pipe(debounceTime(5000))
 			.subscribe();
 	}

@@ -1,5 +1,5 @@
 <div id="grid">
   @for (character of characters; track $index) {
-    <div id="grid__item">{{ character }}</div>
+    <div [id]="createGridItemId($index)">{{ character }}</div>
   }
 </div>

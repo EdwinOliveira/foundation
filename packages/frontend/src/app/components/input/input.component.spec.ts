@@ -4,7 +4,7 @@ import { InputComponent } from "./input.component";
 describe("InputComponent", () => {
 	let component: InputComponent;
 	let fixture: ComponentFixture<InputComponent>;
-	let inputElement: HTMLElement;
+	let inputElement: HTMLInputElement;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -20,6 +20,6 @@ describe("InputComponent", () => {
 		component.placeholder = "Hello Dummy";
 		fixture.detectChanges();
 
-		expect(inputElement.ariaPlaceholder).toBe("Hello Dummy");
+		expect(inputElement.placeholder).toBe("Hello Dummy");
 	});
 });

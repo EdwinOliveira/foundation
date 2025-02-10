@@ -9,5 +9,5 @@ import { CommonModule } from "@angular/common";
 	styleUrl: "./tracker.component.scss",
 })
 export class TrackerComponent {
-	@Input() code: string | null = null;
+	@Input() code = "";
 }
