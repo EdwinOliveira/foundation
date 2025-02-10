@@ -14,8 +14,8 @@
 
 Navigate into the folder before running the commands.
 
-* backend command: npm run dev
-* frontend command: npm run start
+> backend command: npm run dev
+> frontend command: npm run start
 
 ## How It Works
 
