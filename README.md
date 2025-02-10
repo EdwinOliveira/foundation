@@ -19,7 +19,7 @@
 
 ## Frontend Tests
 
-* All the components are covered by tests.
+* Almost all the components are fully covered or partially covered by tests.
 * Navigate to the frontend folder and run following command.
 
 > command: pnpm run test
