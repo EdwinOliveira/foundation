@@ -26,4 +26,5 @@
 
 ## Screenshot
 
-![alt text](image.png)
+![image](https://github.com/user-attachments/assets/5ef2939c-8ef1-42f8-a91f-297856561f42)
+
