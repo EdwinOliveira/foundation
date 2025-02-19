@@ -1,0 +1,4 @@
+<div id="character-selector">
+  <app-typography [content]="typographyContent | uppercase" segment="label"></app-typography>
+  <app-input [placeholder]="inputPlaceholder" (onCharacterInput)="onCharacterInput.emit($event)"></app-input>
+</div>

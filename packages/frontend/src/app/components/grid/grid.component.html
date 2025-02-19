@@ -1,0 +1,5 @@
+<div id="grid">
+  @for (character of characters; track $index) {
+    <div [id]="createGridItemId($index)">{{ character }}</div>
+  }
+</div>
